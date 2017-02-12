@@ -312,6 +312,9 @@ REMOTE_6 = 64
 REMOTE_7 = 65
 REMOTE_8 = 66
 REMOTE_9 = 67
+HORIZONTAL = 0
+VERTICAL = 1
+
 __author__ = 'Team Kodi <http://kodi.tv>'
 __credits__ = 'Team Kodi'
 __date__ = 'Fri May 01 16:22:15 BST 2015'
@@ -798,7 +801,7 @@ class Control(object):
     The problem here is that Python uses references to this class in a dynamic typing way.
     For example, you will find this type of python code frequently::
 
-    window.getControl( 100 ).setLabel( "Stupid Dynamic Type")
+        window.getControl( 100 ).setLabel( "Stupid Dynamic Type")
 
     Notice that the 'getControl' call returns a 'Control ' object.
 
@@ -1096,7 +1099,7 @@ class ListItem(object):
     :param thumbnailImage: string - thumbnail filename.
     :param path: string or unicode - listitem's path.
 
-    .. warning:: Starting from 16.0 (Jarvis) all image-related parameters and methods will be depreciated,
+    .. warning:: Starting from 16.0 (Jarvis) all image-related parameters and methods will be deprecated,
         and :func:`setArt` will become the only method for setting ListItem's images.
 
     Example::
@@ -1231,73 +1234,94 @@ class ListItem(object):
 
         General Values that apply to all types:
 
-            * count: integer (12) - can be used to store an id for later, or for sorting purposes
-            * size: long (1024) - size in bytes
-            * date: string (%d.%m.%Y / 01.01.2009) - file date
+            * count : integer (12) - can be used to store an id for later, or for sorting purposes
+            * size  : long (1024) - size in bytes
+            * date  : string (%d.%m.%Y / 01.01.2009) - file date
 
         Video Values::
 
-            genre: string (Comedy)
-            year: integer (2009)
-            episode: integer (4)
-            season: integer (1)
-            top250: integer (192)
-            tracknumber: integer (3)
-            rating: float (6.4) - range is 0..10
-            watched: depreciated - use playcount instead
-            playcount: integer (2) - number of times this item has been played
-            overlay: integer (2) - range is 0..8.  See GUIListItem.h for values
-            cast: list (Michal C. Hall)
-            castandrole: list (Michael C. Hall|Dexter)
-            director: string (Dagur Kari)
-            mpaa: string (PG-13)
-            plot: string (Long Description)
-            plotoutline: string (Short Description)
-            title: string (Big Fan)
-            originaltitle: string (Big Fan)
-            duration: string - duration in minutes (95)
-            studio: string (Warner Bros.)
-            tagline: string (An awesome movie) - short description of movie
-            writer: string (Robert D. Siegel)
-            tvshowtitle: string (Heroes)
-            premiered: string (2005-03-04)
-            status: string (Continuing) - status of a TVshow
-            code: string (tt0110293) - IMDb code
-            aired: string (2008-12-07)
-            credits: string (Andy Kaufman) - writing credits
-            lastplayed: string (%Y-%m-%d %h:%m:%s = 2009-04-05 23:16:04)
-            album: string (The Joshua Tree)
-            votes: string (12345 votes)
-            trailer: string (/home/user/trailer.avi)
-            imdbnumber : string (tt0110293) - IMDb code
-            set : string (Batman Collection) - name of the collection
-            setid : integer (14) - ID of the collection
+            genre         : string (Comedy)
+            year          : integer (2009)
+            episode       : integer (4)
+            season        : integer (1)
+            top250        : integer (192)
+            tracknumber   : integer (3)
+            rating        : float (6.4) - range is 0..10
+            watched       : deprecated - use playcount instead
+            playcount     : integer (2) - number of times this item has been played
+            overlay       : integer (2) - range is 0..8.  See GUIListItem.h for values
+            cast          : list (Michal C. Hall)
+            castandrole   : list (Michael C. Hall|Dexter)
+            director      : string (Dagur Kari)
+            mpaa          : string (PG-13)
+            plot          : string (Long Description)
+            plotoutline   : string (Short Description)
+            title         : string (Big Fan)
+            originaltitle : string (Big Fan)
+            duration      : string - duration in minutes (95)
+            studio        : string (Warner Bros.)
+            tagline       : string (An awesome movie) - short description of movie
+            writer        : string (Robert D. Siegel)
+            tvshowtitle   : string (Heroes)
+            premiered     : string (2005-03-04)
+            status        : string (Continuing) - status of a TVshow
+            code          : string (tt0110293) - IMDb code
+            aired         : string (2008-12-07)
+            credits       : string (Andy Kaufman) - writing credits
+            lastplayed    : string (%Y-%m-%d %h:%m:%s = 2009-04-05 23:16:04)
+            album         : string (The Joshua Tree)
+            votes         : string (12345 votes)
+            trailer       : string (/home/user/trailer.avi)
+            imdbnumber    : string (tt0110293) - IMDb code
+            set           : string (Batman Collection) - name of the collection
+            setid         : integer (14) - ID of the collection
 
         Music Values::
 
-            tracknumber: integer (8)
-            duration: integer (245) - duration in seconds
-            year: integer (1998)
-            genre: string (Rock)
-            album: string (Pulse)
-            artist: string (Muse)
-            title: string (American Pie)
-            rating: string (3) - single character between 0 and 5
-            lyrics: string (On a dark desert highway...)
-            playcount: integer (2) - number of times this item has been played
-            lastplayed: string (%Y-%m-%d %h:%m:%s = 2009-04-05 23:16:04)
+            tracknumber : integer (8)
+            duration    : integer (245) - duration in seconds
+            year        : integer (1998)
+            genre       : string (Rock)
+            album       : string (Pulse)
+            artist      : string (Muse)
+            title       : string (American Pie)
+            rating      : string (3) - single character between 0 and 5
+            lyrics      : string (On a dark desert highway...)
+            playcount   : integer (2) - number of times this item has been played
+            lastplayed  : string (%Y-%m-%d %h:%m:%s = 2009-04-05 23:16:04)
 
         Picture Values::
 
-            title: string (In the last summer-1)
-            picturepath: string (/home/username/pictures/img001.jpg)
-            exif: string (See CPictureInfoTag::TranslateString in PictureInfoTag.cpp for valid strings)
+            title       : string (In the last summer-1)
+            picturepath : string (/home/username/pictures/img001.jpg)
+            exif        : string (See CPictureInfoTag::TranslateString in PictureInfoTag.cpp for valid strings)
 
         Example::
 
             self.list.getSelectedItem().setInfo('video', { 'Genre': 'Comedy' })
         """
         pass
+
+
+    def setCast(self, actors):
+        """ Sets the cast parameters, including artwork and the ability to specify the order of occurrence
+
+        :param actors: list of dictionaries (see below for relevant keys)
+
+        Keys::
+
+            name          : string (Michael C. Hall)
+            role          : string (Dexter)
+            thumbnail     : string (http://www.someurl.com/someimage.png)
+            order         : integer (1)
+
+        Example::
+
+            actors = [{"name": "Actor 1", "role": "role 1"}, {"name": "Actor 2", "role": "role 2"}]
+            listitem.setCast(actors)
+        """
+        pass
+
 
     def setProperty(self, key, value):
         """Sets a listitem property, similar to an infolabel.
@@ -1367,15 +1391,15 @@ class ListItem(object):
 
         Some default art values (any string possible):
 
-        * thumb : string - image filename
-        * poster : string - image filename
-        * banner : string - image filename
-        * fanart : string - image filename
-        * clearart : string - image filename
+        * thumb     : string - image filename
+        * poster    : string - image filename
+        * banner    : string - image filename
+        * fanart    : string - image filename
+        * clearart  : string - image filename
         * clearlogo : string - image filename
         * landscape : string - image filename
 
-        .. warning:: Starting from 16.0 (Jarvis) all image-related parameters and methods will be depreciated,
+        .. warning:: Starting from 16.0 (Jarvis) all image-related parameters and methods will be deprecated,
             and ``setArt`` will become the only method for setting ListItem's images.
 
         example::
@@ -1461,7 +1485,7 @@ class ControlLabel(Control):
     :param font: string -- font used for label text. (e.g. 'font13')
     :param textColor: hexstring -- color of enabled label's label. (e.g. '0xFFFFFFFF')
     :param disabledColor: hexstring -- color of disabled label's label. (e.g. '0xFFFF3300')
-    :param alignment: integer -- alignment of label -- *Note, see xbfont.h
+    :param alignment: integer -- alignment of label -- \*Note, see xbfont.h
     :param hasPath: bool -- True=stores a path / False=no path.
     :param angle: integer -- angle of control. (+ rotates CCW, - rotates CW)
 
@@ -1524,7 +1548,7 @@ class ControlFadeLabel(Control):
     :param height: integer - height of control.
     :param font: string - font used for label text. (e.g. 'font13')
     :param textColor: hexstring - color of fadelabel's labels. (e.g. '0xFFFFFFFF')
-    :param _alignment: integer - alignment of label - *Note, see xbfont.h
+    :param _alignment: integer - alignment of label - \*Note, see xbfont.h
 
     .. note::
         After you create the control, you need to add it to the window with addControl().
@@ -1668,7 +1692,7 @@ class ControlButton(Control):
     :param noFocusTexture: string - filename for no focus texture.
     :param textOffsetX: integer - x offset of label.
     :param textOffsetY: integer - y offset of label.
-    :param alignment: integer - alignment of label - *Note, see xbfont.h
+    :param alignment: integer - alignment of label - \*Note, see xbfont.h
     :param font: string - font used for label text. (e.g. 'font13')
     :param textColor: hexstring - color of enabled button's label. (e.g. '0xFFFFFFFF')
     :param disabledColor: hexstring - color of disabled button's label. (e.g. '0xFFFF3300')
@@ -1787,7 +1811,7 @@ class ControlList(Control):
     :param _itemTextYOffset: integer - y offset of items label.
     :param _itemHeight: integer - height of items.
     :param _space: integer - space between items.
-    :param _alignmentY: integer - Y-axis alignment of items label - *Note, see xbfont.h
+    :param _alignmentY: integer - Y-axis alignment of items label - \*Note, see xbfont.h
 
     .. note::
         After you create the control, you need to add it to the window with addControl().
@@ -2077,7 +2101,7 @@ class ControlProgress(Control):
 class ControlSlider(Control):
 
     """
-    ControlSlider(x, y, width, height, textureback=None, texture=None, texturefocus=None)
+    ControlSlider(x, y, width, height, textureback=None, texture=None, texturefocus=None, orientation=VERTICAL)
 
     ControlSlider class.
 
@@ -2093,6 +2117,9 @@ class ControlSlider(Control):
     :param orientation: int -- orientation of the slider
 
     .. note::
+        By default a ControlSlider has vertical orientation.
+
+    .. note::
         After you create the control, you need to add it to the window with addControl().
 
     Example::
@@ -2100,15 +2127,15 @@ class ControlSlider(Control):
         self.slider = xbmcgui.ControlSlider(100, 250, 350, 40)
     """
 
-    def __init__(self, x, y, width, height, textureback=None, texture=None, texturefocus=None, orientation=1):
+    def __init__(self, x, y, width, height, textureback=None, texture=None, texturefocus=None, orientation=VERTICAL):
         """
-        :param x: integer - x coordinate of control.
-        :param y: integer - y coordinate of control.
-        :param width: integer - width of control.
-        :param height: integer - height of control.
-        :param textureback: string - image filename.
-        :param texture: string - image filename.
-        :param texturefocus: string - image filename.
+        :param x: integer -- x coordinate of control.
+        :param y: integer -- y coordinate of control.
+        :param width: integer -- width of control.
+        :param height: integer -- height of control.
+        :param textureback: string -- image filename.
+        :param texture: string -- image filename.
+        :param texturefocus: string -- image filename.
         :param orientation: int -- orientation of the slider
 
         .. note::
@@ -2116,7 +2143,7 @@ class ControlSlider(Control):
 
         Example::
 
-            self.slider = xbmcgui.ControlSlider(100, 250, 350, 40)
+            self.slider = xbmcgui.ControlSlider(100, 250, 350, 40, orientation=xbmcgui.HORIZONTAL)
         """
         pass
 
@@ -2178,7 +2205,7 @@ class ControlEdit(Control):
     :param font: [opt] string - font used for label text. (e.g. 'font13')
     :param textColor: [opt] hexstring - color of enabled label's label. (e.g. '0xFFFFFFFF')
     :param disabledColor: [opt] hexstring - color of disabled label's label. (e.g. '0xFFFF3300')
-    :param _alignment: [opt] integer - alignment of label - *Note, see xbfont.h
+    :param _alignment: [opt] integer - alignment of label - \*Note, see xbfont.h
     :param focusTexture: [opt] string - filename for focus texture.
     :param noFocusTexture: [opt] string - filename for no focus texture.
     :param isPassword: [opt] bool - if true, mask text value.
@@ -2222,8 +2249,7 @@ class ControlEdit(Control):
         pass
 
     def getLabel(self):
-        """
-       Returns the text heading for this edit control.
+        """Returns the text heading for this edit control.
 
         example::
 
@@ -2302,10 +2328,10 @@ class ControlRadioButton(Control):
         Note: To customize RadioButton all 4 abovementioned textures need to be provided.
         focus and noFocus textures can be the same.
 
-        Note:
+        Note::
             After you create the control, you need to add it to the window with addControl().
 
-        Example:
+        Example::
             self.radiobutton = xbmcgui.ControlRadioButton(100, 250, 200, 50, 'Status', font='font14')
         """
         pass
@@ -2567,7 +2593,7 @@ class Dialog(object):
         :param line3: string or unicode -- line #3 text.
         :param nolabel: label to put on the no button.
         :param yeslabel: label to put on the yes button.
-        :param autoclose : [opt] integer -- milliseconds to autoclose dialog. (default=do not autoclose)
+        :param autoclose: [opt] integer -- milliseconds to autoclose dialog. (default=do not autoclose)
 
         .. note::
             Returns ``True`` if 'Yes' was pressed, else ``False``.
@@ -2769,6 +2795,52 @@ class DialogProgressBG(object):
             pDialog.update(25, message='Downloading Finding Nemo ...')
         """
         pass
+
+
+class DialogBusy(object):
+    """
+    Provides "Busy" dialog for long running actions.
+
+    .. note:: Added on Kodi v.17 (Krypton)
+    """
+    def create(self):
+        """
+        Create and show a busy dialog.
+
+        .. note:: Use :meth:`DialogBusy.update` to update the progressbar.
+
+        Example::
+
+            dialog = xbmcgui.DialogBusy()
+            dialog.create()
+        """
+        pass
+
+    def update(self, percent):
+        """
+        Updates the busy dialog.
+
+        :param percent: percent complete. (-1:100).
+        :type percent: int
+
+        .. note:: If percent == -1 (default), the progressbar will be hidden.
+        """
+        pass
+
+    def close(self):
+        """
+        Close the progress dialog.
+        """
+        pass
+
+    def iscanceled(self):
+        """
+        Checks if busy dialog is canceled.
+
+        :return: ``True`` if the user pressed cancel.
+        :rtype: bool
+        """
+        return bool(0)
 
 
 class Action(object):
