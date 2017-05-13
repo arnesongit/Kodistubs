@@ -354,12 +354,6 @@ class Player(object):
         """Get subtitle stream name."""
         return str()
 
-    def disableSubtitles(self):
-        """
-        .. warning:: Deprecated!
-        """
-        raise DeprecationWarning
-
     def getAvailableAudioStreams(self):
         """Get audio stream names."""
         return list()
@@ -684,17 +678,6 @@ class Monitor(object):
 
     Creates a new Monitor to notify addon about changes.
     """
-    def onAbortRequested(self):
-        """
-        .. warning:: Deprecated!
-        """
-        raise DeprecationWarning
-
-    def onDatabaseUpdated(self, database):
-        """
-        .. warning:: Deprecated!
-        """
-        raise DeprecationWarning
 
     def onScreensaverActivated(self):
         """
@@ -719,12 +702,6 @@ class Monitor(object):
         Will be called when addon settings are changed
         """
         pass
-
-    def onDatabaseScanStarted(self, database):
-        """
-        .. warning:: Deprecated!
-        """
-        raise DeprecationWarning
 
     def onNotification(self, sender, method, data):
         """
@@ -1209,17 +1186,15 @@ def getSupportedMedia(mediaType):
     return str()
 
 
-def log(msg, level=LOGNOTICE):
+def log(msg, level=LOGDEBUG):
     """
     Write a string to XBMC's log file and the debug window.
 
     :param msg: string - text to output.
-    :param level: [opt] integer - log level to ouput at. (default=``LOGNOTICE``)
+    :param level: [opt] integer - log level to ouput at. (default: ``LOGDEBUG``)
 
     .. note:: You can use the above as keywords for arguments and skip certain optional arguments.
         Once you use a keyword, all following arguments require the keyword.
-
-    .. warning:: Starting from Kodi 16.0 (Jarvis) default level will be changed to ``LOGDEBUG``.
 
     Text is written to the log for the following conditions.
 

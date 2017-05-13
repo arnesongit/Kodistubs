@@ -1219,7 +1219,7 @@ class ListItem(object):
 
     def isSelected(self):
         """Returns the listitem's selected status."""
-        return bool
+        return bool(1)
 
     def setInfo(self, type, infoLabels):
         """Sets the listitem's infoLabels.
@@ -1275,6 +1275,7 @@ class ListItem(object):
             imdbnumber    : string (tt0110293) - IMDb code
             set           : string (Batman Collection) - name of the collection
             setid         : integer (14) - ID of the collection
+            mediatype     : string "video", "movie", "tvshow", "season", "episode" or "musicvideo" 
 
         Music Values::
 
@@ -1466,6 +1467,33 @@ class ListItem(object):
 
         """
         return str()
+
+    def setUniqueIDs(self, values, defaultrating=''):
+        """
+        Sets the listitem's uniqueID 
+        
+        Some example values (any string possible):
+        
+        =========  ======================
+        **Label**  **Type**
+        ---------  ----------------------
+        imdb        string - uniqueid name
+        tvdb        string - uniqueid name
+        tmdb        string - uniqueid name
+        anidb       string - uniqueid name
+        =========  ======================
+        
+        :param values: pairs of ``{label: value}``
+        :type values: dict
+        :param defaultrating: [opt] the name of default rating
+        :type defaultrating: str
+        
+        Example::
+        
+            # setUniqueIDs(values, defaultrating)
+            listitem.setUniqueIDs({ 'imdb': 'tt8938399', 'tmdb' : '9837493' }, "imdb")
+        """
+        pass
 
 
 class ControlLabel(Control):
@@ -1773,18 +1801,6 @@ class ControlButton(Control):
     def getLabel2(self):
         """Returns the buttons label2 as a unicode string."""
         return unicode()
-
-
-class ControlCheckMark(Control):
-    """
-    .. warning:: Depreciated!
-    """
-
-    def __init__(self, *args, **kwargs):
-        """
-        .. warning:: Depreciated!
-        """
-        raise DeprecationWarning
 
 
 class ControlList(Control):
@@ -2685,6 +2701,19 @@ class Dialog(object):
             ret = dialog.multiselect('Choose something', ['Foo', 'Bar', 'Baz'])
         """
         return list()
+
+    def info(self, item):
+        """
+        Show the corresponding info dialog for a given listItem
+
+        The type of a dialog is based on the ListItem InfoTag.
+
+        :param item: ListItem instance
+        :type item: ListItem
+        :return: ``True`` if the info dialog is opened successfully
+        :rtype: bool
+        """
+        return bool(1)
 
 
 class DialogProgress(object):
