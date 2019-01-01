@@ -17,9 +17,9 @@ either from sources using :file:`setup.py` script::
 
   python setup.py install
 
-or directly from the GitHub repository using ``pip``::
+or directly from PyPI using ``pip``::
 
-  pip install git+https://github.com/romanvm/Kodistubs.git#egg=Kodistubs
+  pip install Kodistubs
 
 If you don't want to install Kodistubs into your Python environment,
 below are the instructions for using Kodistubs in popular Python IDEs.
@@ -29,19 +29,26 @@ PyCharm
 
 To add Kodistubs to the current project open
 :menuselection:`Settings --> Project --> Project Structure`,
-click :guilabel:`+ Add Content Root` and select a folder where Kodistubs :file:`.py` files are located.
+click :guilabel:`+ Add Content Root` and select a folder where Kodistubs :file:`.py`
+files are located.
 
 .. figure:: _static/pycharm_add_content_root.jpg
 
     **Adding Kodistubs to the current project in PyCharm**
 
 This enables code completion and docstrings pop-ups for Kodi Python API functions/classes/methods.
+PyCharm also supports `PEP-484`_ type annotations so it should warn you if you
+are trying to pass incompatible arguments to functions or methods.
 
 .. figure:: _static/pycharm_autocompletion.jpg
 
     **Code completion and a docstring pop-up in PyCharm**
 
-.. note:: PyCharm docstrings pop-ups partially support reStructuredText formatting.
+PyCharm docstrings pop-ups partially support reStructuredText formatting.
+
+.. figure:: _static/pycharm_docstring.png
+
+    **Function docstring pop-up in PyCharm**
 
 Eclipse + PyDev
 ---------------
@@ -104,6 +111,47 @@ This enables code completion and docstrings pop-ups for Kodi Python API function
 
     **Code completion and a docstring pop-up in Sublime Text 3**
 
+Type Annotations
+================
+
+Kodistubs include `PEP-484`_ type annotations for all functions and methods
+so you can use `mypy`_ or other compatible tool to check types of function/method
+arguments and return values in your code.
+
+.. code-block:: python
+  :emphasize-lines: 2
+
+  def getInfoLabel(cLine):
+      # type: (str) -> str
+      """
+      Get a info label
+
+      :param infotag: string - infoTag for value you want returned.
+      :return: InfoLabel as a string
+
+      List of InfoTags -- <http://kodi.wiki/view/InfoLabels>
+
+      Example::
+
+          ..
+          label = xbmc.getInfoLabel('Weather.Conditions')
+          ..
+      """
+      return ""
+
+The following table explains some of the type annotations:
+
+======================= ===========================================================
+Type annotation         Function/method argument or return value
+======================= ===========================================================
+``str``                 Accepts or returns UTF-8 encoded byte string (:class:`str`)
+``str_type``            Accepts both :class:`str` and :class:`unicode`
+``int_type``            Accepts both :class:`int` and :class:`long`
+``Union[type1, type2]`` Accepts or returns either ``type1`` or ``type2``
+======================= ===========================================================
+
+.. _PEP-484: https://www.python.org/dev/peps/pep-0484/#suggested-syntax-for-python-2-7-and-straddling-code
+.. _mypy: http://mypy-lang.org/
 
 Testing Code
 ============
@@ -135,4 +183,3 @@ This will enable cross-references to Kodi Python API objects in your Sphinx-gene
 
 .. _Sphinx: http://www.sphinx-doc.org/en/stable/
 .. _intersphinx: http://www.sphinx-doc.org/en/stable/ext/intersphinx.html
-

@@ -1,25 +1,27 @@
+from io import open
 try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
+import kodistubs_meta
 
-with open('README.rst') as fobj:
-    long_descr = fobj.read()
+with open('README.rst', encoding='utf-8') as fo:
+    long_descr = fo.read()
 
 setup(
     name='Kodistubs',
-    version='2.0.0',
+    version=kodistubs_meta.VERSION,
     py_modules=['xbmc', 'xbmcaddon', 'xbmcgui', 'xbmcplugin', 'xbmcvfs'],
+    install_requires=['typing'],
     zip_safe=False,
     description='Stub modules that re-create Kodi Python API',
     long_description=long_descr,
-    author='Tenzer, twinther, Roman V.M.',
-    maintainer='Roman V.M.',
-    maintainer_email='romanvm@yandex.ua',
+    author=kodistubs_meta.AUTHOR,  # The new Kodistubs have been generated from scratch
+    author_email=kodistubs_meta.EMAIL,
     url='https://github.com/romanvm/Kodistubs',
     license='GPLv3',
     keywords="kodi documentation inspection",
-    classifieres=[
+    classifiers=[
         'Environment :: Plugins',
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: OS Independent',
