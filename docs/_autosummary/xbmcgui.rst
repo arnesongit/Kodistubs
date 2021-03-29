@@ -3,49 +3,42 @@ xbmcgui
 
 .. automodule:: xbmcgui
 
-   
-   
-   .. rubric:: Functions
+  .. rubric:: Classes
 
-   .. autosummary::
-   
-      getCurrentWindowDialogId
-      getCurrentWindowId
-   
-   
+  .. autosummary::
 
-   
-   
-   .. rubric:: Classes
+    
+    Control
+    ControlSpin
+    ControlLabel
+    ControlEdit
+    ControlList
+    ControlFadeLabel
+    ControlTextBox
+    ControlImage
+    ControlProgress
+    ControlButton
+    ControlGroup
+    ControlRadioButton
+    ControlSlider
+    Dialog
+    DialogProgress
+    DialogBusy
+    DialogProgressBG
+    ListItem
+    Action
+    Window
+    WindowDialog
+    WindowXML
+    WindowXMLDialog
 
-   .. autosummary::
-   
-      Action
-      Control
-      ControlButton
-      ControlCheckMark
-      ControlEdit
-      ControlFadeLabel
-      ControlGroup
-      ControlImage
-      ControlLabel
-      ControlList
-      ControlProgress
-      ControlRadioButton
-      ControlSlider
-      ControlSpin
-      ControlTextBox
-      Dialog
-      DialogProgress
-      DialogProgressBG
-      ListItem
-      Window
-      WindowDialog
-      WindowXML
-      WindowXMLDialog
-   
-   
 
-   
-   
-   
+  .. rubric:: Functions
+
+  .. autosummary::
+
+    
+    getCurrentWindowId
+    getCurrentWindowDialogId
+    getScreenHeight
+    getScreenWidth
