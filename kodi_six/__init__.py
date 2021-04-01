@@ -5,20 +5,6 @@
 Utility functions for string conversion depending on Python version
 """
 
-# kodi-six v0.1.3.1
-
-#import sys
-#import inspect
-#
-#__all__ = [
-#    'PY2',
-#    'py2_encode',
-#    'py2_decode',
-#    'encode_decode',
-#    'patch_object',
-#    'ModuleWrapper',
-#]
-
 PY2 = sys.version_info[0] == 2  #: ``True`` for Python 2
 
 
@@ -67,7 +53,7 @@ def encode_decode(func):
         return wrapper
     return func
 
-'''
+
 def _wrap_class(cls):
     class ClassWrapper(cls):
         pass
@@ -116,4 +102,3 @@ class ModuleWrapper(object):
         obj = patch_object(obj)
         setattr(self, item, obj)
         return obj
-'''
