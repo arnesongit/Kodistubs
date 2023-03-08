@@ -45,12 +45,12 @@ class File:
     def __init__(self, filepath: str, mode: Optional[str] = None) -> None:
         pass
 
-    def __enter__(self):  # Required for context manager
+    def __enter__(self) -> 'File':  # Required for context manager
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):  # Required for context manager
         pass
-
+    
     def read(self, numBytes: int = 0) -> str:
         """
         Read file parts as string.
@@ -512,8 +512,10 @@ def rmdir(path: str, force: bool = False) -> bool:
     """
     Remove a folder.
 
-    :param path: Folder to remove
-    :return: True if successed
+    :param path: string - Folder to remove
+    :param force: [opt] bool - Force directory removal (default False). This can be
+        useful if the directory is not empty.
+    :return: bool - True if successful, False otherwise
 
     Example::
 
